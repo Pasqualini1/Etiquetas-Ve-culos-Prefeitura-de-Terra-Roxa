@@ -1,0 +1,163 @@
+/* =========================================================
+   PARTE 1: VISUAL MODERNO (INTERFACE DO USUÁRIO)
+   ========================================================= */
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 30px 20px;
+  /* 🌟 NOVO FUNDO ESCURO: Azul escuro elegante transicionando para um ouro/amarelo fechado */
+  background: linear-gradient(135deg, #021626 0%, #003e5c 60%, #a89a00 100%);
+  background-attachment: fixed;
+  box-sizing: border-box;
+  color: #000000;
+  /* Deixei a cor do texto padrão clara para não sumir no fundo */
+}
+
+/* TITULO */
+h1 {
+  color: #00abf1;
+  /* O seu azul original brilha muito num fundo escuro! */
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  /* Sombra sutil para dar volume */
+}
+
+/* AREA DE TEXTO */
+textarea {
+  width: 100%;
+  height: 150px;
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #00283a;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  /* Branco levemente translúcido */
+  color: #1e293b;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  /* Sombra mais marcada contra o fundo escuro */
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #00abf1;
+  box-shadow: 0 0 0 4px rgba(0, 171, 241, 0.25);
+}
+
+/* BOTÕES */
+button {
+  background: #00abf1;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-right: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #0095d1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* AREA DO RESULTADO (A Folha de Papel) */
+#resultado {
+  margin-top: 35px;
+  padding: 25px;
+  background: white;
+  /* Intocável: o papel tem que ser branco! */
+  border-radius: 12px;
+  /* Sombra muito mais intensa para fazer a folha branca "saltar" do fundo escuro */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+
+/* =========================================================
+   PARTE 2: MOTOR DO SISTEMA (INTOCÁVEL - IMPRESSÃO/PDF)
+   ========================================================= */
+
+@page {
+  size: A4;
+  margin: 5mm;
+}
+
+table {
+  border-collapse: collapse;
+  width: 180mm;
+  margin: auto;
+}
+
+td {
+  width: 25%;
+  border: 1px solid black;
+  padding: 4px;
+  text-align: center;
+  vertical-align: middle;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.pagina {
+  width: 210mm;
+  display: flex;
+  justify-content: center;
+  padding-top: 15mm;
+  box-sizing: border-box;
+  page-break-after: always;
+}
+
+.pagina:last-child {
+  page-break-after: auto;
+}
+
+tr {
+  page-break-inside: avoid;
+}
+
+td strong {
+  font-size: 12px;
+  display: block;
+}
+
+td div {
+  font-size: 11px;
+}
+
+@media print {
+  body {
+    padding: 0;
+    margin: 0;
+    background: white;
+  }
+
+  textarea,
+  button,
+  h1,
+  hr {
+    display: none;
+  }
+
+  #resultado {
+    box-shadow: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+}
